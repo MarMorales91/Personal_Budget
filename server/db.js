@@ -1,9 +1,12 @@
 
 let db = []
 let number = 0;
+let balance = 2000
 
 const saveToDb = (instance) =>{
     instance.id = number++;
+    let spending = instance.budget
+    balance = balance - Number(spending)
     db.push(instance);
 }
 
@@ -21,5 +24,6 @@ const getExpenseById = (id) => {
 module.exports = {
     allExpenses,
     saveToDb, 
-    getExpenseById
+    getExpenseById,
+    balance
 }

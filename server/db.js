@@ -23,9 +23,31 @@ const getExpenseById = (id) => {
 }
 
 
+const updateExpense = (id, newData) => {
+    const index = db.findIndex(obj => obj.id === id)
+    if(index !== -1){
+       newData.id = id
+       db[index] = newData;
+       return newData
+    }
+    return false
+}
+
+const deleteExpense = (id) => {
+    const index = db.findIndex(obj => obj.id === id);
+    if(index !== -1){
+        db.splice(index, 1);
+        return true;
+    }else{
+        return false;
+    }
+}
+
 module.exports = {
+    updateExpense,
     allExpenses,
     saveToDb, 
     getExpenseById,
-    balance
+    balance,
+    deleteExpense
 }

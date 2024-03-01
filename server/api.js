@@ -1,6 +1,6 @@
 const express = require('express');
 const app = require('../server');
-const { allExpenses, saveToDb, getExpenseById, balance } = require('./db');
+const { allExpenses, saveToDb, getExpenseById, balance, updateExpense, deleteExpense } = require('./db');
 const budgetRouter = express.Router()
 
 
@@ -33,7 +33,24 @@ budgetRouter.get('/:id', (req, res, next) => {
 })
 
 budgetRouter.put('/:id', (req, res, next) => {
-    return
+    const findId = req.params.id;
+    const data = updateExpense(Number(findId), req.body)
+    if(data){
+        res.send(data);
+    }else{
+        res.status(404).send()
+    }
+})
+
+
+budgetRouter.delete('/:id', (req, res, next) => {
+    const findId = req.params.id;
+    const deletedData = deleteExpense(Number(findId))
+    if(deletedData){
+        res.status(200).send()
+    }else{
+        res.status(500).send()
+    }
 })
 
 module.exports = budgetRouter

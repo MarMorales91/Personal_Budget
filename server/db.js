@@ -1,6 +1,8 @@
 
-let db = []
-let number = 0;
+let db = [
+    {id: 0, title: "car", spend: 100}
+]
+let number = 1;
 let balance = 2000
 
 const saveToDb = (instance) =>{

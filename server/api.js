@@ -13,10 +13,14 @@ budgetRouter.get('/', (req, res, next) => {
    }
 })
 
+
+
 budgetRouter.post('/', (req, res, next) => {
     const newData = saveToDb(req.body)
     res.status(201).send(newData)
 })
+
+
 
 budgetRouter.get('/:id', (req, res, next) => {
     const id = req.params.id;
